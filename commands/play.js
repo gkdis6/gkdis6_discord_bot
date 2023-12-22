@@ -54,7 +54,7 @@ export async function execute(interaction) {
     }
   }
 
-  const query = interaction.options.getString("query");
+  const query = interaction.options.getString("query").split('?')[0];
 
   message = await interaction.channel.send({
     embeds: [await make_simple_embed(`<a:loading:1032708714605592596>  Searching for \`${query}\`...`)],
