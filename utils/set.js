@@ -42,8 +42,22 @@ const hanghae = ["연합세력", "패왕의길", "도박광", "최고의 도움"
 const unit = [...new Set([...adCho, ...apCho, ...adBool, ...apBool, ...apYoung, ...adYoung, ...apZe, ...adZe, ...randomZe])];
 let result;
 
-export function getRandomSet() {
-  const set = new Set(unit);
+export function getRandomSet(detail) {
+  let arr = [];
+  if(detail === undefined || detail.indexOf('초') > -1){
+    arr = [...arr, ...adCho, ...apCho];
+  }
+  if(detail === undefined || detail.indexOf('불') > -1){
+      arr = [...arr, ...adBool, ...apBool];
+  }
+  if(detail === undefined || detail.indexOf('영') > -1){
+      arr = [...arr, ...adYoung, ...apYoung];
+  }
+  if(detail === undefined || detail.indexOf('제') > -1){
+      arr = [...arr, ...adZe, ...apZe];
+  }
+  const set = new Set(arr);
+
   result = [...set];
 
   const resultlength = result.size || result.length;
@@ -66,6 +80,55 @@ export function getHanghaeSet() {
   result = hanghae;
   const resultlength = result.size || result.length;
   return result[getRandom(resultlength)];
+}
+
+export function getNightmareSet() {
+  const cho = new Set([...adCho, ...apCho]);
+  let arrCho = [...cho];
+  const bool = new Set([...adBool, ...apBool]);
+  let arrBool = [...bool];
+  const young = new Set([...adYoung, ...apYoung]);
+  let arrYoung = [...young];
+  const ze = new Set([...adZe, ...apZe]);
+  let arrZe = [...ze];
+
+  let str = '악몽 룰을 적용합니다.\n초월                    불멸                    제한                    영원\n'
+
+  for(let i = 0; i<7; i++){
+    const choPtr = getRandom(arrCho.length);
+
+    str += arrCho[choPtr];
+    for(let j = 0; j<28-strLength(arrCho[choPtr]); j++){
+        str += " ";
+    }
+
+    arrCho.splice(choPtr,1);
+    if(i <= 1){
+        const boolPtr = getRandom(arrBool.length);
+        const zePtr = getRandom(arrZe.length);
+        str += arrBool[boolPtr];
+        for(let j = 0; j<28-strLength(arrBool[boolPtr]); j++){
+            str += " ";
+        }
+        str += arrZe[zePtr];
+        for(let j = 0; j<28-strLength(arrZe[zePtr]); j++){
+            str += " ";
+        }
+        arrBool.splice(boolPtr,1);
+        arrZe.splice(zePtr,1);
+    }
+    if(i == 0) {
+        const youngPtr = getRandom(arrYoung.length);
+        str += arrYoung[youngPtr];
+        for(let j = 0; j<28-strLength(arrYoung[youngPtr]); j++){
+            str += " ";
+        }
+        arrYoung.splice(youngPtr,1);
+    }
+    str += '\n';
+  }
+  str += '\n밴 되었습니다.';
+  return str;
 }
 
 const getRandom = (max) => Math.floor(Math.random() * max);
