@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { make_simple_embed } from "../utils/utils.js";
+import {getCommand} from "../utils/set.js";
 
 export const data = new SlashCommandBuilder()
     .setName("찾기")
