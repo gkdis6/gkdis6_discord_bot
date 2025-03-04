@@ -3,6 +3,8 @@ import { saveCode, loadCode } from '../utils/notion.js';
 import { describe, it, afterEach } from 'mocha';
 
 describe('save & load code', function() {
+	this.timeout(5000);
+	
 	it('should save and load the code correctly', async function() {
 		const code = new Date().toISOString();
 		// 코드 저장
