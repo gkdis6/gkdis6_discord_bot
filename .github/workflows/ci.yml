@@ -49,4 +49,4 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
 
       - name: Deploy to remote server
-        run: ssh -i ~/.ssh/id_rsa ${{ secrets.SSH_ID }}@${{ secrets.SSH_IP }} "cd /home/gkdis6_bot && git pull && npm ci"
+        run: ssh -i ~/.ssh/id_rsa ${{ secrets.SSH_ID }}@${{ secrets.SSH_IP }} "sh /home/gkdis6_bot/myapp.git/hooks/post-receive"
