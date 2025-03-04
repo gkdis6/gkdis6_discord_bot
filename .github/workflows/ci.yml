@@ -46,7 +46,7 @@ jobs:
       - name: Deploy to remote server
         run: |
           ssh -i ~/.ssh/id_rsa ${{ secrets.SSH_ID }}@${{ secrets.SSH_IP }} << 'EOF'
-            cd /home/gkdis6_discord_bot/
+            cd ${{ secrets.PROJECT_HOME }}
             git pull origin master
             npm install
             echo "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}" > .env
