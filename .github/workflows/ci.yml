@@ -47,6 +47,12 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa ${{ secrets.SSH_ID }}@${{ secrets.SSH_IP }} << 'EOF'
             cd /home/gkdis6_discord_bot/
-            git pull origin main
+            git pull origin master
             npm install
+            echo "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}" > .env
+            echo "NOTION_DATABASE_ID=${{ secrets.NOTION_DATABASE_ID }}" >> .env
+            echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+            echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+            echo "GUILD_ID=${{ secrets.GUILD_ID }}" >> .env
+            pm2 reload gkdis6_bot
           EOF
