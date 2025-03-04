@@ -1,4 +1,6 @@
 import { Client as NotionClient } from "@notionhq/client";
+import 'dotenv/config';
+
 const notion = new NotionClient({ auth: process.env.NOTION_API_KEY });
 
 export async function saveCode(username, code) {

@@ -4,8 +4,7 @@ import discord from "discord.js";
 import * as fs from "fs";
 import { make_simple_embed, is_same_vc_as, leave_voice_channel } from "./utils/utils.js";
 import { any_audio_playing, stop_audio, pause_audio } from "./utils/audio.js";
-import dotenv from "dotenv";
-dotenv.config();
+import 'dotenv/config';
 
 const token = process.env.DISCORD_TOKEN;
 
